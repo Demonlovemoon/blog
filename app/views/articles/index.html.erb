@@ -1,0 +1,10 @@
+<% @articles.each_with_index do |article| %>
+      <strong>Title:</strong>
+      <%= article.title %>
+
+      <strong>create_time:</strong>
+      <%= article.created_at %><br>
+
+    <%= link_to 'show',article_path(article) %>
+<% end %>
+<%= link_to 'new', new_article_path %>
