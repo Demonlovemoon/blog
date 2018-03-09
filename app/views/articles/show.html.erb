@@ -8,4 +8,32 @@
   <strong>Text:</strong>
   <%= @article.text %>
 </p>
+
+评论：
+<%  @article.comments.each_with_index do |ac| %>
+    <br>
+   评论人： <%= ac.commenter %><br>
+    评论： <%= ac.body.html_safe %><br>
+    pinglunshij <%= ac.created_at %>
+    <%= link_to 'delete',article_comment_path(@article,ac), method: :delete,
+                data: { comfirm:'are you sure?' } %><br>
+<%  end  %>
+<br>
+add comment：
+
+    <%= form_for [@article, @comments] do |f|%>
+    <p>
+      <%= f.label :commenter %><br>
+      <%= f.text_field :commenter %>
+    </p>
+    <p>
+      <%= f.label :body %><br>
+      <%= f.text_area :body %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>
+
+
 <%= link_to 'liebiao',articles_path %>
